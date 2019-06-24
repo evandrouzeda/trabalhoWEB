@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title><ui:insert name="titulo"></ui:insert></title>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputScript library="js" name="scripts.js"/>
+    </h:head>
+    <h:body>
+        <h:form id="formMenu" prependId="false">
+            <p:megaMenu>
+                <p:menuitem value="Inicio" url="/index.xhtml" icon="ui-icon-home"/>
+                
+                <p:submenu label="Usuario: #{controleLogin.usuarioAutenticado != null ? controleLogin.usuarioAutenticado.nome : ''}" >
+                        <p:column>
+                                <p:submenu label="Efetuar login" rendered="#{controleLogin.usuarioAutenticado == null}">
+                                    <p:menuitem action="#{controleLogin.paginaLogin()}" value="Login" ajax="false"/>
+                                </p:submenu>
+                                <p:submenu label="Efetuar logout" rendered="#{controleLogin.usuarioAutenticado != null}">
+                                        <p:menuitem action="#{controleLogin.efetuarLogout()}"
+                                                                value="Logout"
+                                                                ajax="false"/>
+                                </p:submenu>                      
+                        </p:column>
+                </p:submenu>
+                
+                <p:submenu label="Cadastros" rendered="#{p:ifGranted('ADMINISTRADOR')}" >
+                    <p:column>
+                        <p:submenu label="Avançados">
+                            <p:menuitem action="#{controleCurso.listar()}"
+                                        value="Manutenção de Curso"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleDisciplina.listar()}"
+                                        value="Manutenção de Disciplina"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleUsu.listar()}"
+                                        value="Manutenção de Aluno"
+                                        ajax="false"/>                        
+                        </p:submenu> 
+
+                    </p:column>
+                </p:submenu>
+                
+                   
+                     
+                <p:submenu label="Negócios" rendered="#{p:ifGranted('USUARIO') or p:ifGranted('ADMINISTRADOR')}">
+                    <p:column>
+                            <p:submenu label="Básicos">
+
+                                <p:menuitem action="#{controleOrdemServico.listar()}" value="Ordens de Serviço" ajax="false"/>        
+
+                           </p:submenu>
+                        
+                    </p:column>                                         
+                </p:submenu>
+                     
+     
+                <p:submenu label="Relatórios" rendered="#{p:ifGranted('USUARIO')}">
+                    
+                    <p:column>
+                            <p:submenu label="Básicos">
+                                    <p:menuitem action="#{controleProduto.imprimirProdutos()}"
+                                                            value="Produtos"
+                                                            ajax="false"
+                                                            target="_blank"/>
+                            </p:submenu>
+                        
+                    </p:column>
+
+                </p:submenu>  
+               
+            </p:megaMenu>            
+        </h:form>
+        <ui:insert name="conteudo">
+        </ui:insert>                
+        <ui:include src="ajaxstatus.xhtml"/>
+    </h:body>
+    
+</html>
