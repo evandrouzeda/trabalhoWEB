@@ -7,6 +7,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import br.edu.ifsul.modelo.Curso;
+import br.edu.ifsul.modelo.Instituicao;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -36,7 +37,7 @@ public class ConverterInstituicao implements Converter, Serializable {
         if(value == null){
             return null;
         }
-        Curso c = (Curso) value;    
+        Instituicao c = (Instituicao) value;    
         return c.getId().toString();
     }
 }

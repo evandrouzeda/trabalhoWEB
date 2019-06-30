@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/converter/ConverterInstituicao.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/dao/DAOGenerico.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/converter/ConverterUsuario.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/web/privado/disciplina/cruddisciplina.xhtml</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/controle/ControleInstituicao.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/dao/DisciplinaDAO.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/src/java/br/edu/ifsul/dao/AlunoDAO.java</file>
-            <file>file:/Users/evandrouzeda/Downloads/ProjetoOSEletronicosWeb/web/privado/curso/crudcurso.xhtml</file>
+            <file>file:/Users/evandrouzeda/Google%20Drive/FACUL/5º%20Semestre/PW/trabalhoWeb/src/java/br/edu/ifsul/controle/ControleDisciplina.java</file>
+            <file>file:/Users/evandrouzeda/Google%20Drive/FACUL/5º%20Semestre/PW/trabalhoWeb/web/privado/curso/crudcurso.xhtml</file>
+            <file>file:/Users/evandrouzeda/Google%20Drive/FACUL/5º%20Semestre/PW/trabalhoWeb/web/privado/disciplina/cruddisciplina.xhtml</file>
+            <file>file:/Users/evandrouzeda/Google%20Drive/FACUL/5º%20Semestre/PW/trabalhoWeb/src/java/br/edu/ifsul/controle/ControleCurso.java</file>
         </group>
     </open-files>
 </project-private>

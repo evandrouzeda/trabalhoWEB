@@ -83,36 +83,56 @@
                       modal="true" width="50%" height="100%">
                 <h:form id="formEdicao" prependId="false">
                     <p:growl id="growl"/>
-                    <div align="center">
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="Nome" for="txtNome"/>
-                            <p:inputText value="#{controleCurso.objeto.nome}"
-                                         size="50" maxlength="50" id="txtNome"
-                                         placeholder="Obrigatório"/>
-                            <p:outputLabel value="Sigla" for="txtSigla"/>
-                            <p:inputText value="#{controleCurso.objeto.sigla}"
-                                         size="5" maxlength="5" id="txtSigla"
-                                         placeholder="Obrigatório"/>
-                            <p:outputLabel value="Descricao" for="txtDescricao"/>
-                            <p:inputText value="#{controleCurso.objeto.descricao}"
-                                         size="50" maxlength="50" id="txtDescricao"
-                                         placeholder="Obrigatório"/>
-                            <h:outputText value="Ativo" />
-                            <p:selectBooleanButton id="value1" value="#{controleCurso.value1}" onLabel="Sim" offLabel="Não" style="width:60px" />
-                            <p:outputLabel value="Data de Inicio" for="txtInicio"/>
-                            <p:calendar id="txtInicio" value="#{controleCurso.objeto.inicioAtividades}"
-                                        mask="true" pattern="dd/MM/yyyy" navigator="true" size="10">
-                                <f:converter binding="#{converterCalendar}" />
-                            </p:calendar>
-                            <p:outputLabel for="instituicao" value="Instituicao:" />
-                            <p:selectOneMenu id="instituicao" value="#{controleCurso.objeto.institucao}" effect="fold" editable="false" >
-                                <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
-                                <f:selectItems value="#{controleInstituicao.dao.listaTodos}" itemLabel="#{controleInstituicao.objeto}" />
-                                <f:converter binding="#{converterInstituicao}"/>
-                            </p:selectOneMenu>
-                        </p:panelGrid>
-                    </div>
-
+                    <p:tabView id="tab">
+                        <p:tab title="Crud Curso">
+                            <div align="center">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Nome" for="txtNome"/>
+                                    <p:inputText value="#{controleCurso.objeto.nome}"
+                                                 size="50" maxlength="50" id="txtNome"
+                                                 placeholder="Obrigatório"/>
+                                    <p:outputLabel value="Sigla" for="txtSigla"/>
+                                    <p:inputText value="#{controleCurso.objeto.sigla}"
+                                                 size="5" maxlength="5" id="txtSigla"
+                                                 placeholder="Obrigatório"/>
+                                    <p:outputLabel value="Descricao" for="txtDescricao"/>
+                                    <p:inputText value="#{controleCurso.objeto.descricao}"
+                                                 size="50" maxlength="50" id="txtDescricao"
+                                                 placeholder="Obrigatório"/>
+                                    <h:outputText value="Ativo" />
+                                    <p:selectBooleanButton id="value1" value="#{controleCurso.objeto.ativo}" onLabel="Sim" offLabel="Não" style="width:60px" />
+                                    <p:outputLabel value="Data de Inicio" for="txtInicio"/>
+                                    <p:calendar id="txtInicio" value="#{controleCurso.objeto.inicioAtividades}"
+                                                mask="true" pattern="dd/MM/yyyy" navigator="true" size="10">
+                                        <f:converter binding="#{converterCalendar}" />
+                                    </p:calendar>
+                                    <p:outputLabel for="instituicao" value="Instituicao:" />
+                                    <p:selectOneMenu id="instituicao" value="#{controleCurso.objeto.instituicao}" effect="fold" editable="false" >
+                                        <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
+                                        <f:selectItems value="#{controleInstituicao.dao.listaTodos}" var="inst" itemLabel="#{inst.nome}" />
+                                        <f:converter binding="#{converterInstituicao}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+                            </div>
+                        </p:tab>
+                        <p:tab title="Crud Disciplina">
+                            <div align="center">
+                                <p:panelGrid columns="2">
+                                    <p:commandButton value="Nova Disciplina" icon="ui-icon-plus"
+                                                     actionListener="#{controleCurso.novaDisciplina()}"
+                                                     update="formMatricula"
+                                                     process="@this"
+                                                     oncomplete="PF('dlgDisciplina').show();"/>
+                                    <p:dataTable value="#{controleCurso.objeto.disciplina}" var="disc" id="listaDisciplina" 
+                                                 rowIndexVar="idxFot">
+                                        <p:column headerText="Nome" width="30%">
+                                            <p:outputLabel value="#{disc.nome}"/>
+                                        </p:column>                      
+                                    </p:dataTable> 
+                                </p:panelGrid>
+                            </div>
+                        </p:tab>
+                    </p:tabView>
                     <p:panel>
                         <div align="center">
                             <p:commandButton value="Salvar"
@@ -123,7 +143,49 @@
                         </div>
                     </p:panel>
                 </h:form>
-            </p:dialog>            
+            </p:dialog> 
+            <p:dialog header="Nova Disciplina" widgetVar="dlgDisciplina" resizable="false"
+                      modal="true" width="60%" height="100%" position="top" >
+                <h:form id="formMatricula" prependId="false">                    
+
+                    <div align="center">
+                        <p:panelGrid columns="2">
+                            <div align="center">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Nome" for="txtNome"/>
+                                    <p:inputText value="#{controleCurso.disc.nome}"
+                                                 size="50" maxlength="50" id="txtNome"
+                                                 placeholder="Obrigatório"/>
+                                    <p:outputLabel value="Descricao" for="txtDescricao"/>
+                                    <p:inputText value="#{controleCurso.disc.descricao}"
+                                                 size="50" maxlength="50" id="txtDescricao"
+                                                 placeholder="Obrigatório"/>
+                                    <p:outputLabel value="Carga Horária" for="txtHora"/>
+                                    <p:inputText value="#{controleCurso.disc.cargaHoraria}"
+                                                 size="3" maxlength="3" id="txtHora"
+                                                 placeholder="Obrigatório"/>
+                                    <p:outputLabel value="Conhecimentos Mínimos" for="txtMini"/>
+                                    <p:inputText value="#{controleCurso.disc.conhecimentosMinimos}"
+                                                 size="50" maxlength="50" id="txtMini"
+                                                 placeholder="Obrigatório"/>
+                                    
+                                </p:panelGrid>
+                            </div>  
+
+                        </p:panelGrid>
+                    </div>
+
+                    <p:panel>
+                        <div align="center">
+                            <p:commandButton value="Salvar"
+                                             icon="ui-icon-disk"
+                                             actionListener="#{controleCurso.salvarDisciplina()}"
+                                             update="tab:listaDisciplina growl"
+                                             oncomplete="if(!args.validationFailed) {PF('dlgDisciplina').hide();}"/>                                             
+                        </div>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
         </ui:define>
 
 

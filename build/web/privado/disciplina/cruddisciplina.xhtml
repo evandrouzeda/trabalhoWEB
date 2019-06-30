@@ -112,15 +112,7 @@
                                 </p:panelGrid>
                             </div>
 
-                            <p:panel>
-                                <div align="center">
-                                    <p:commandButton value="Salvar"
-                                                     icon="ui-icon-disk"
-                                                     actionListener="#{controleDisciplina.salvar()}"
-                                                     update="formEdicao formListagem"
-                                                     oncomplete="if(!args.validationFailed) {PF('dlg').hide();}"/>                                             
-                                </div>
-                            </p:panel>
+
                         </p:tab>
                         <p:tab title="Matricular Aluno">
                             <p:commandButton value="Matricular Aluno" icon="ui-icon-plus"
@@ -129,17 +121,26 @@
                                              process="@this"
                                              oncomplete="PF('dlgMatricula').show();"/>
                             <p:dataTable value="#{controleDisciplina.objeto.matriculas}" var="disc" id="listaPermissoes" 
-                                                     rowIndexVar="idxFot">
-                                    <p:column headerText="Nome" width="30%">
-                                            <p:outputLabel value="#{disc.nome}"/>
-                                    </p:column>                      
+                                         rowIndexVar="idxFot">
+                                <p:column headerText="Nome" width="30%">
+                                    <p:outputLabel value="#{disc.nome}"/>
+                                </p:column>                      
                             </p:dataTable>                    
                         </p:tab>
                     </p:tabView>
+                    <p:panel>
+                        <div align="center">
+                            <p:commandButton value="Salvar"
+                                             icon="ui-icon-disk"
+                                             actionListener="#{controleDisciplina.salvar()}"
+                                             update="formEdicao formListagem"
+                                             oncomplete="if(!args.validationFailed) {PF('dlg').hide();}"/>                                             
+                        </div>
+                    </p:panel>
                 </h:form>
             </p:dialog>  
             <p:dialog header="Novo Aluno" widgetVar="dlgMatricula" resizable="false"
-                 modal="true" width="60%" height="100%" position="top" >
+                      modal="true" width="60%" height="100%" position="top" >
                 <h:form id="formMatricula" prependId="false">                    
 
                     <div align="center">
@@ -147,13 +148,13 @@
                             <p:outputLabel value="Nome" for="selectPermissao"/>
                             <p:selectOneMenu value="#{controleDisciplina.aluno}"
                                              id="selectPermissao">		      
-                                
+
                                 <f:selectItem itemLabel="Selecione um registro" noSelectionOption="true"/>
                                 <f:selectItems value="#{controleDisciplina.daoAluno.listaObjetos}"
                                                var="prm" itemLabel="#{prm.nome}"/>
                                 <f:converter binding="#{converterAluno}" />
                             </p:selectOneMenu>  
-                            
+
                         </p:panelGrid>
                     </div>
 
@@ -163,11 +164,11 @@
                                              icon="ui-icon-disk"
                                              actionListener="#{controleDisciplina.salvarAluno()}"
                                              update="tab:listaPermissoes growl"
-                                             oncomplete="if(!args.validationFailed) {PF('dlgPermissao').hide();}"/>                                             
+                                             oncomplete="if(!args.validationFailed) {PF('dlgMatricula').hide();}"/>                                             
                         </div>
                     </p:panel>
                 </h:form>
-       </p:dialog>
+            </p:dialog>
         </ui:define>
 
 

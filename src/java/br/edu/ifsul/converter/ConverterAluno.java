@@ -36,14 +36,12 @@ public class ConverterAluno  implements Serializable, Converter  {
             return null;
         }
         
-        Aluno pf = dao.find(Integer.parseInt(value));
-        
-        /*Aluno pf = null;
+        Aluno pf = null;
         try{
-            pf =  dao.getObjectById(value);
+            pf =  dao.getObjectById(Integer.parseInt(value));
         }catch(Exception e){
             e.printStackTrace();
-        }*/
+        }
         
         return pf;
     }
@@ -53,7 +51,6 @@ public class ConverterAluno  implements Serializable, Converter  {
          if(value == null){
             return null;
         }
-        System.out.println(value.getClass()+ "------------<<<<");
         Aluno pf =  (Aluno) value;
         
         return pf.getId().toString();

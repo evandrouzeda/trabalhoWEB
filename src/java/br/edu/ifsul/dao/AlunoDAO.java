@@ -19,7 +19,7 @@ public class AlunoDAO extends DAOGenerico<Aluno> implements Serializable{
          super(Aluno.class);
          
         // inicializar as ordenações possiveis        
-        listaOrdem.add(new Ordem("nomeUsuario", "Nome Usuário", "="));
+        listaOrdem.add(new Ordem("nome", "Nome", "="));
         listaOrdem.add(new Ordem("nome", "Nome", "like"));
         // definir qual a ordenação padrão no caso o segundo elemento da lista (indice 1)
         ordemAtual = listaOrdem.get(1);

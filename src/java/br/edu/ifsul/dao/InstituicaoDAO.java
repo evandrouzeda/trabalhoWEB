@@ -3,11 +3,13 @@ package br.edu.ifsul.dao;
 import br.edu.ifsul.converter.ConverterOrdem;
 import br.edu.ifsul.modelo.Instituicao;
 import java.io.Serializable;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author evandrouzeda
  */
+@Stateful
 public class InstituicaoDAO extends DAOGenerico<Instituicao> implements Serializable{
     public InstituicaoDAO(){
         super(Instituicao.class);
